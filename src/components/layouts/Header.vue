@@ -4,15 +4,34 @@
             <h2><span>Portal</span>Kampus</h2>
             <ul>
                 <li><router-link to="/home/about">About</router-link></li>
-                <li><router-link to="/">Logout</router-link></li>
+                <li><button @click="logout">Logout</button></li>
             </ul>
         </nav>
     </header>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    
+    methods:{
+        logout(){
+            axios.post('auth/logout',{
+                header:{
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then((res)=>{
+                console.log(res.data)
+                console.log('clicking logout button, redirected to login page')
+                this.$router.push('/login')
+                localStorage.removeItem('token')
+                this.$store.dispatch('addUser', null)
+                // this.$store.getters.userLevel = null
+            }).catch(e=>
+                console.log(e.response)
+            )
+                // location.reload()
+        }
+    }
 }
 </script>
 

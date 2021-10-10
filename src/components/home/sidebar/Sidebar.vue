@@ -9,7 +9,7 @@
             <!-- <h5><router-link to="/home/admin">Admin</router-link></h5> -->
             <ul>
                 <li><router-link to="/home/all_admin" v-if="isOwner">All Admin</router-link></li>
-                <li><router-link to="/home/admin_task">My Task</router-link></li>
+                <li><router-link to="/home/admin_task" v-if="isAdmin || isOwner" >My Task</router-link></li>
             </ul>
         </nav>
     </div>
@@ -19,12 +19,16 @@
 export default {
     data(){
         return{
-            isOwner : false
+            isOwner : false,
+            isAdmin : false
         }
     },
     created(){
         if(this.$store.getters.userLevel == 'owner'){
             return this.isOwner = true
+        }
+        if(this.$store.getters.userLevel == 'admin'){
+            return this.isAdmin = true
         }
     }
 }

@@ -1,8 +1,12 @@
 <template>
     <div>
         <div class="login">
-            <h2>Login Form</h2>
-            <form @submit.prevent="login">
+            <h2>Register Form</h2>
+            <form @submit.prevent="register">
+                <div class="form">
+                    <label>Name</label>
+                    <input type="text" v-model.trim="name">
+                </div>
                 <div class="form">
                     <label>Email</label>
                     <input type="email" v-model.trim="email">
@@ -14,7 +18,7 @@
                 <div class="form">
                     <button>Login</button>
                 </div>
-                <p>haven't account?<router-link to="/register">register</router-link></p>
+                <p>have an account?<router-link to="/login">login</router-link></p>
             </form>
         </div>
     </div>
@@ -25,26 +29,23 @@ import axios from 'axios'
 export default {
     data(){
         return{
+            name:'',
             email:'',
-            password:''
+            password:'',
         }
     },
     methods:{
-        login(){
-            axios.post('auth/login',{
+        register(){
+            axios.post('auth/register',{
+                name:this.name,
+                level:'owner',
                 email:this.email,
-                password:this.password
+                password:this.password,
+                password_confirmation:this.password
             }).then((res)=>{
-                console.log(res.data)
-                localStorage.setItem('token', res.data.access_token)
-                this.$store.dispatch('addToken', res.data.access_token)
-                this.$router.push('/home')
-                console.log('memasuki halaman home')
-            }).catch((e)=>{
-                console.log('gagal login',e.response.data)
-                localStorage.setItem('token', null)
-                this.$store.dispatch('addToken', null)
-            })
+                console.log('registrasi berhasail dilakukan', res.data)
+                this.$router.push('/login')
+            }).catch(e=>console.log(e.response.data))
         }
     }
 }
@@ -80,6 +81,7 @@ form{
 input{
     border-radius: 4px;
     border: solid pink 1px;
+    font-size: 1.2rem;
 }
 button{
     border-radius: 4px;

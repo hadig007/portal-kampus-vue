@@ -7,6 +7,7 @@ import Dasboard from './components/home/content/home/Dashboard.vue'
 
 // autentikasi
 import Login from './components/autentikasi/Login.vue'
+import Register from './components/autentikasi/Register.vue'
 
 // admin
 // import Admin from './components/home/admin/Admin.vue'
@@ -31,6 +32,7 @@ const router = createRouter({
             {path:'admin_task', component:Admintask},
         ]},
         {path:'/login', component:Login},
+        {path:'/register', component:Register},
 
     ]
 })

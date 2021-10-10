@@ -1,32 +1,14 @@
 <template>
-    <div>
+    <div v-if="users">
         <h3>
             Memampilkan Dummy Users
         </h3>
         <hr>
-        <div class="box">
+        <div class="box" v-for="us in filteredUser" :key="us.id">
             <div class="cards">
                 <div class="body">
-                    <h2>Hadi Gunawan</h2>
-                    <p>Teknologi Informasi <span>💹</span></p>
-                </div>
-            </div>
-            <div class="cards">
-                <div class="body">
-                    <h2>Hadi Gunawan</h2>
-                    <p>Teknologi Informasi <span>💹</span></p>
-                </div>
-            </div>
-            <div class="cards">
-                <div class="body">
-                    <h2>Hadi Gunawan</h2>
-                    <p>Teknologi Informasi <span>💹</span></p>
-                </div>
-            </div>
-            <div class="cards">
-                <div class="body">
-                    <h2>Hadi Gunawan</h2>
-                    <p>Teknologi Informasi <span>💹</span></p>
+                    <h2>{{ us.name }}✔️</h2>
+                    <p>email {{ us.email }}<span> | chat🙌</span></p>
                 </div>
             </div>
         </div>
@@ -34,8 +16,24 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    
+    data(){
+        return{
+            users:null
+        }
+    },
+    computed:{
+        filteredUser(){
+            return this.users.filter(user => user.level == 'user')
+        }
+    },
+    created(){
+        axios.get('users').then((res)=>{
+            console.log(res.data)
+            this.users = res.data
+        }).catch(e=>console.log(e.response.data))
+    }
 }
 </script>
 
@@ -45,8 +43,7 @@ div{
     align-items: center;
 }
 .box{
-    display: block;
-    margin: 0 auto;
+    display: inline-block
 }
 .cards{
     background-color: violet;
