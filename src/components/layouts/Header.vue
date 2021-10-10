@@ -1,0 +1,51 @@
+<template>
+    <header>
+        <nav>
+            <h2><span>Portal</span>Kampus</h2>
+            <ul>
+                <li><router-link to="/home/about">About</router-link></li>
+                <li><router-link to="/">Logout</router-link></li>
+            </ul>
+        </nav>
+    </header>
+</template>
+
+<script>
+export default {
+    
+}
+</script>
+
+<style scoped>
+header{
+    background-color: purple;
+    }
+nav{
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+h2{
+    margin: 0;
+    color: whitesmoke;
+}
+li {
+    list-style: none;
+    margin: 5px 10px;
+    padding: 5px 10px;
+}
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+span{
+    color: rgba(245, 245, 245, 0.356);
+}
+</style>
