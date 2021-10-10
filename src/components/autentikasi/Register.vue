@@ -38,7 +38,7 @@ export default {
         register(){
             axios.post('auth/register',{
                 name:this.name,
-                level:'owner',
+                level:'user',
                 email:this.email,
                 password:this.password,
                 password_confirmation:this.password

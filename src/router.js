@@ -4,6 +4,9 @@ import Home from './components/home/Home.vue'
 import HomeContent from './components/home/content/home/HomeContent.vue'
 import Users from './components/home/content/users/Users.vue'
 import Dasboard from './components/home/content/home/Dashboard.vue'
+import IndexingContent from './components/home/content/home/IndexingContent.vue'
+
+import NotFound from './NotFound.vue'
 
 // autentikasi
 import Login from './components/autentikasi/Login.vue'
@@ -23,7 +26,8 @@ const router = createRouter({
         {path:'/home', component:Home,children:[
             // content
             {path:'dashboard',component:Dasboard},
-            {path:'content',component:HomeContent},
+            {path:'content',component:HomeContent, props:true},
+            {path:'content/:ctn',component:IndexingContent, props:true},
             {path:'users', component:Users},
             {path:'about', component:About},
             // admin
@@ -33,6 +37,7 @@ const router = createRouter({
         ]},
         {path:'/login', component:Login},
         {path:'/register', component:Register},
+        {path:'/:NotFound(.*)', component:NotFound},
 
     ]
 })

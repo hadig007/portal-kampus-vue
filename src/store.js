@@ -5,7 +5,7 @@ const store = createStore({
         return{
             content:[],
             token:null,
-            user:{}
+            user:{} // 
         }
     },
     getters:{

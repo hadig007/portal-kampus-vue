@@ -10,15 +10,9 @@
                 <label>Materi Singkat</label>
                <textarea rows="4" v-model.trim="materi"></textarea>
             </div>
-            <div class="form">
-                <label>Preview Materi</label>
-               <textarea rows="4" v-html="markdownToHtml"></textarea>
-            </div>
-            <div v-html="markdownToHtml"></div>
-            <div class="form">
-                <label>Link Materi Lengkap</label>
-                <input type="text" v-model.trim="link">
-            </div>
+            <p>Preview</p>
+            <hr>
+            <div v-html="markdownToHtml" class="preview"></div>
             <div class="form">
                 <button>Tambah</button>
             </div>
@@ -42,7 +36,6 @@ export default {
             judul:'',
             materi:'',
             preMateri:'',
-            link:'',
         }
     },
     computed:{
@@ -53,7 +46,9 @@ export default {
     methods:{
         async tambah(){
             await axios.post('http://127.0.0.1:8000/api/create_markdown',{
-                markdown: this.markdownToHtml
+                judul:this.judul,
+                markdown: this.markdownToHtml,
+                penulis:this.$store.state.user.name
             }).then((res)=>{
                 alert(res.data)
                 this.show=!this.show
@@ -61,7 +56,6 @@ export default {
             }).catch(e=>console.log(e.response.data))
         }
     }
-    
 }
 </script>
 
@@ -103,5 +97,10 @@ h5{
 }
 p{
     margin: 0;
+}
+.preview{
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 1rem;
 }
 </style>
