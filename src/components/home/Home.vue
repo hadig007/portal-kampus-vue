@@ -53,7 +53,7 @@ export default {
             console.log('not having token, redirected to login page')
             this.$router.push('/login')
             localStorage.removeItem('token')
-            this.$store.getters.userLevel = null
+            // this.$store.getters.userLevel = null
         }
     }
 }
@@ -65,7 +65,7 @@ export default {
   padding: 0;
 }
 .home{
-    border: solid 1px grey;
+    /* border: solid 1px grey; */
     margin: 1rem;
     padding: 1rem;
 }

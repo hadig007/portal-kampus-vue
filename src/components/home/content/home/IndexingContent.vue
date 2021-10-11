@@ -3,15 +3,26 @@
         <h1>{{ content.judul }}</h1>
         <hr>
         <p v-html="content.markdown"></p>
+        <p>{{ content.created_at }}</p>
+        <button @click="pdf">Download PDF</button>
     </div>
+
 </template>
 
 <script>
+
 import axios from 'axios'
 export default {
+    components: {
+    },
     data(){
         return{
             content:{}
+        }
+    },
+    methods:{
+        pdf(){
+            console.log('donwloading pdf')
         }
     },
     async created(){

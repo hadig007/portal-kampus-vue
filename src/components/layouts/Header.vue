@@ -15,9 +15,10 @@ import axios from 'axios'
 export default {
     methods:{
         logout(){
-            axios.post('auth/logout',{
+            // location.reload()
+                axios.post('auth/logout',{
                 header:{
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                    Authorization: 'Bearer ' + this.$store.state.tokenLogout
                 }
             }).then((res)=>{
                 console.log(res.data)
@@ -26,10 +27,14 @@ export default {
                 localStorage.removeItem('token')
                 this.$store.dispatch('addUser', null)
                 // this.$store.getters.userLevel = null
-            }).catch(e=>
-                console.log(e.response)
+            }).catch((e)=>{
+                console.log('logout paksa',e.response)
+                this.$router.push('/login')
+                localStorage.removeItem('token')
+                this.$store.dispatch('addUser', null)
+                // this.$store.getters.userLevel = null
+            }
             )
-                // location.reload()
         }
     }
 }

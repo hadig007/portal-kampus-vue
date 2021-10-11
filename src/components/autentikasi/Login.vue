@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style scoped>
+div{
+    overflow: hidden;
+}
 .login{
     background-color: violet;
     padding: 1rem 0;

@@ -5,6 +5,7 @@ const store = createStore({
         return{
             content:[],
             token:null,
+            tokenLogout:null,
             user:{} // 
         }
     },
@@ -16,7 +17,11 @@ const store = createStore({
             return state.user && state.token
         },
         userLevel(state){
+            if(state.user.level == null){
+                console.log('user level kosong')
+            }
             return state.user.level
+
         }
     },
     mutations:{
@@ -25,6 +30,7 @@ const store = createStore({
         },
         SET_TOKEN(state, paylod){
             state.token = paylod
+            state.tokenLogout = paylod
         },
         SET_USER(state, paylod){
             state.user = paylod

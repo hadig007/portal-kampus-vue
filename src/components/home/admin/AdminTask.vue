@@ -45,7 +45,7 @@ export default {
     },
     methods:{
         async tambah(){
-            await axios.post('http://127.0.0.1:8000/api/create_markdown',{
+            await axios.post('create_markdown',{
                 judul:this.judul,
                 markdown: this.markdownToHtml,
                 penulis:this.$store.state.user.name

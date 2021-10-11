@@ -36,7 +36,7 @@ export default {
         }
     },
     created(){
-        axios.get('http://127.0.0.1:8000/api/html').then((res)=>{
+        axios.get('html').then((res)=>{
             console.log(res.data)
             this.content = res.data
         })
